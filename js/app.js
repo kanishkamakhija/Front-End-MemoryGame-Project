@@ -3,6 +3,9 @@
  */
 var list_cards = ["fa fa-diamond","fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube" ];
 
+var card1, card2;
+var open_list = [];
+var match_list = [];
 window.onload = function() {
     list_cards = shuffle(list_cards);
     shuffle_cards(list_cards);
@@ -35,22 +38,60 @@ function shuffle_cards(array)
     var list = $(".deck li");
     for(var i = 0; i < list.length; i++)
         {
-           
             var curr = list[i];
             curr = curr.getElementsByTagName("i")[0].setAttribute("class", array[i]);
             console.log(curr);
         }
 }
 
-$("ul.deck li").click(function() {  
-    console.log(1);
-    $(this).flip(
+function ismatch()
+{
+    let class1 = $(open_list[0]).children('i').attr('class');
+    let class2 = $(open_list[1]).children('i').attr('class');
+    console.log("class1:",class1);
+    console.log("class2:",class2);
+    if(class1 === class2)
     {
-        front: '.card',
-        reverse: 'true',
+        console.log("match card");
+        $(open_list[0]).addClass("match");
+        $(open_list[1]).addClass("match");
+        match_list.push(open_list[0]);
+        match_list.push(open_list[1]);
+    }
+    else {
+        console.log("mismatch card");
+        $(open_list[0]).removeClass("open show");
+        $(open_list[1]).removeClass("open show");
+    }
+    open_list.length = 0;
+    return;
+}
+
+$(document).ready(function() {
+    $("ul.deck li").click(function() {
+        open_list.push(this);
+        $(this).addClass("show open");
+        console.log(open_list);
+        if(open_list.length === 2)
+        {
+            setTimeout(ismatch, 3000);
+        }
+        console.log(match_list);
     });
-    console.log(2);
+
+    //lid.classsList.toggle('flip');
+
 });
+
+
+
+
+
+
+
+
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
