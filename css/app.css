@@ -18,7 +18,7 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: "Times New Roman";
 }
 
 .container {
@@ -51,7 +51,7 @@ h1 {
     margin: 0 0 3em;
 }
 
-.deck .card {
+.deck .card{
     height: 125px;
     width: 125px;
     background: #2e3d49;
@@ -107,3 +107,70 @@ h1 {
     float: right;
     cursor: pointer;
 }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+  transform:translateX(-1500px);
+  animation: roadRunnerIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 200px;
+  padding: 20px;
+  width: 70%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0
+  rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+
+ @keyframes roadRunnerIn {
+   0% {
+     transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
+   }
+   70% {
+     transform:translateX(30px) skewX(0deg) scaleX(.9);
+   }
+   100% {
+     transform:translateX(0px) skewX(0deg) scaleX(1);
+   }
+ }
+
+ @keyframes roadRunnerOut {
+   0% {
+     transform:translateX(0px) skewX(0deg) scaleX(1);
+   }
+   30% {
+     transform:translateX(-30px) skewX(-5deg) scaleX(.9);
+   }
+   100% {
+     transform:translateX(1500px) skewX(30deg) scaleX(1.3);
+   }
+ }
