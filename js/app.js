@@ -1,8 +1,7 @@
 
- /*global $, jQuery*/
- /*
-  * Create a list that holds all of your cards
-  */
+ /*global $*/
+
+//Create a list that holds all of your cards
 var list_cards = ["fa fa-diamond","fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube" ];
 
 // Container to fetch start ratings
@@ -16,8 +15,7 @@ var countDown;
 
 // Fetch the modal to display the status of end game
 var modals = document.getElementById('win-modal');
-// Button that allows to play again
-var playagnBtn = document.getElementsByClassName('close')[0];
+
 //Count the number of moves of aplayer
 var open_modal = document.getElementById("open_modal");
 
@@ -113,15 +111,7 @@ function modal() {
   window.addEventListener('click', outsideClick);
 }
 
-// Function to close modal
-function closeModal() {
-  click = false;
-  modals.style.display = 'none';
-  $("ul.deck li").removeClass("open show match");
-  list_cards = shuffle(list_cards);
-  shuffle_cards(list_cards);
-  reset();
-}
+
 
 // Function to close modal if outside click
 function outsideClick(e) {
