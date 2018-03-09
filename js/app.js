@@ -10,14 +10,16 @@ var container = $(".fa.fa-star");
 // List to match the open cards and save the finally matched cards
 var open_list = [];
 var match_list = [];
-let click=false;
+let click = false;
 var countDown;
-
+let full;
 // Fetch the modal to display the status of end game
 var modals = document.getElementById('win-modal');
 
 //Count the number of moves of aplayer
 var open_modal = document.getElementById("open_modal");
+
+$(document).ready(function() {
 
 //Function to shuffle the cards
 function shuffleit() {
@@ -33,6 +35,8 @@ window.onload = shuffleit();
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -75,6 +79,7 @@ function moves1(){
 //Function that checks whether the two open cards are matching or not
 function ismatch()
 {
+
     let class1 = $(open_list[0]).children('i').attr('class');
     let class2 = $(open_list[1]).children('i').attr('class');
 
@@ -170,7 +175,6 @@ function reset (){
     clearInterval(countDown);
 }
 
-$(document).ready(function() {
 
     $("div.restart i").click(function() {
     click = false;
@@ -184,21 +188,23 @@ $(document).ready(function() {
     });
 
     $("ul.deck li").click(function() {
-      console.log(click);
+
     if (!click)
     {
     timer();
     }
     moves1();
     click=true;
+
     open_list.push(this);
+
     $(this).addClass("show open");
     if(open_list.length === 2)
     {
       document.getElementById("numberMoves").innerText++;
-      setTimeout(flipping, 402);
-      setTimeout(ismatch,700);
-      setTimeout(win,1000);
+      setTimeout(flipping, 100);
+      setTimeout(ismatch,100);
+      setTimeout(win,100);
     }
     });
 });
